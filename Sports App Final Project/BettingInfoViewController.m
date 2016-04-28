@@ -10,13 +10,64 @@
 
 @interface BettingInfoViewController ()
 
+@property (strong, nonatomic) IBOutlet UILabel *moneyLineHome;
+@property (strong, nonatomic) IBOutlet UILabel *moneyLineAway;
+@property (strong, nonatomic) IBOutlet UILabel *homeSpread;
+@property (strong, nonatomic) IBOutlet UILabel *awaySpread;
+
+@property (strong, nonatomic) IBOutlet UILabel *under;
+@property (strong, nonatomic) IBOutlet UILabel *over;
+
+@property (strong, nonatomic) IBOutlet UILabel *homeTeam;
+@property (strong, nonatomic) IBOutlet UILabel *awayTeam;
+
 @end
 
 @implementation BettingInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self displayOddsInfo];
     // Do any additional setup after loading the view.
+}
+
+- (IBAction)backButtonPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) displayOddsInfo {
+    NSNumber *MLHome = [self.odds objectForKey:@"MoneyLineHome"];
+    NSNumber *MLAway = [self.odds objectForKey:@"MoneyLineAway"];
+    NSNumber *pointSpreadHome = [self.odds objectForKey:@"PointSpreadHome"];
+    NSNumber *pointSpreadAway = [self.odds objectForKey:@"PointSpreadAway"];
+    NSNumber *pointSpreadHomeLine = [self.odds objectForKey:@"PointSpreadHomeLine"];
+    NSNumber *pointSpreadAwayLine = [self.odds objectForKey:@"PointSpreadAwayLine"];
+    NSNumber *totalNumber = [self.odds objectForKey:@"TotalNumber"];
+    NSNumber *overLine = [self.odds objectForKey:@"OverLine"];
+    NSNumber *underLine = [self.odds objectForKey:@"UnderLine"];
+    
+    
+    self.moneyLineHome.text = [MLHome stringValue];
+    self.moneyLineAway.text = [MLAway stringValue];
+    
+    NSString *HS = [pointSpreadHome stringValue];
+    NSString *HSL = [pointSpreadHomeLine stringValue];
+    self.homeSpread.text = [[[HS stringByAppendingString:@" ("]stringByAppendingString:HSL] stringByAppendingString:@")"];
+    
+    NSString *AS = [pointSpreadAway stringValue];
+    NSString *ASL = [pointSpreadAwayLine stringValue];
+    self.awaySpread.text = [[[AS stringByAppendingString:@" ("]stringByAppendingString:ASL] stringByAppendingString:@")"];
+    
+    NSString *U = [totalNumber stringValue];
+    NSString *UL = [underLine stringValue];
+    self.under.text = [[[U stringByAppendingString:@" ("]stringByAppendingString:UL] stringByAppendingString:@")"];
+    
+    NSString *O = [totalNumber stringValue];
+    NSString *OL = [overLine stringValue];
+    self.over.text = [[[O stringByAppendingString:@" ("]stringByAppendingString:OL] stringByAppendingString:@")"];
+    
+    self.homeTeam.text = self.homeTeamName;
+    self.awayTeam.text = self.awayTeamName;
 }
 
 - (void)didReceiveMemoryWarning {

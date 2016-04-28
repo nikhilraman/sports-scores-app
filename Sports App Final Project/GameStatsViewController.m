@@ -22,6 +22,9 @@
 - (void) loadGameStatsFromNbaApi {
     // TO DO: Get stats from NBA API
 }
+- (IBAction)backButtonPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -6,21 +6,25 @@
 //  Copyright © 2016 cis195. All rights reserved.
 //
 
-#import "TodayViewController.h" 
+#import "NbaViewController.h"
+#import "BettingInfoViewController.h"
 
 #define baseNBAOddsURL @"https://jsonodds.com/api/odds/nba?oddType=Game" 
 
 #define JsonOddsApiKey @"c423e5a1-c2f0-41b9-91fb-417a57117006"
 
-@interface TodayViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface NbaViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray *gamesArray;
+@property NSDictionary *singleGameOdds;
+@property NSString *homeTeamSelected;
+@property NSString *awayTeamSelected;
 
 
 @end
 
-@implementation TodayViewController
+@implementation NbaViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,6 +32,8 @@
     [self loadGamesFromNbaApi];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.title = @"NBA Schedule";
+    //self.navigationController.navigationItem.title = @"NBA Schedule";
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -69,18 +75,25 @@
     
     NSDictionary *game = self.gamesArray[indexPath.row];
     NSString *homeTeam = [game objectForKey:@"HomeTeam"];
-    UILabel *homeTeamLabel = (UILabel *)[cell viewWithTag:1];
+    UILabel *homeTeamLabel = (UILabel *)[cell viewWithTag:2];
+    homeTeamLabel.textColor = [UIColor blueColor];
+    //homeTeamLabel.textColor = [UIColor lightTextColor];
     homeTeamLabel.text = homeTeam;
     
     NSString *awayTeam = [game objectForKey:@"AwayTeam"];
-    UILabel *awayTeamLabel = (UILabel *)[cell viewWithTag:2];
+    UILabel *awayTeamLabel = (UILabel *)[cell viewWithTag:1];
+    awayTeamLabel.textColor = [UIColor redColor];
+    //awayTeamLabel.textColor = [UIColor lightTextColor];
     awayTeamLabel.text = awayTeam;
     
     NSString *dateString = [game objectForKey:@"MatchTime"];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
     NSDate *gameTime = [dateFormatter dateFromString:dateString];
-    [dateFormatter setDateFormat:@"MM/dd '-' HH:mm"];
+    //NSLog(@"Date is: %@", [dateFormatter stringFromDate:gameTime]);
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"EDT"]];
+    [dateFormatter setDateFormat:@"MM/dd '|' hh:mm"];
     NSString *newDateString = [dateFormatter stringFromDate:gameTime];
     UILabel *dateLabel = (UILabel *)[cell viewWithTag:3];
     dateLabel.text = newDateString;
@@ -96,7 +109,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // TO DO: Handle what happens if user taps on a cell
+    
+    NSDictionary *game = self.gamesArray[indexPath.row];
+    NSArray *gameOdds = [game objectForKey:@"Odds"];
+    self.singleGameOdds = gameOdds[0];
+    self.homeTeamSelected = [game objectForKey:@"HomeTeam"];
+    self.awayTeamSelected = [game objectForKey:@"AwayTeam"];
+    [self performSegueWithIdentifier:@"nbaToOdds" sender:self];
 }
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([segue.identifier isEqualToString:@"nbaToOdds"]) {
+        UITabBarController *tbc = (UITabBarController *)segue.destinationViewController;
+        BettingInfoViewController *biVC = [tbc.viewControllers objectAtIndex:0];
+        biVC.odds = self.singleGameOdds;
+        biVC.homeTeamName = self.homeTeamSelected;
+        biVC.awayTeamName = self.awayTeamSelected;
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

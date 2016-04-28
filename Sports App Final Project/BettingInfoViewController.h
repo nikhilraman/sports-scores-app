@@ -10,4 +10,8 @@
 
 @interface BettingInfoViewController : UIViewController
 
+@property NSString *homeTeamName;
+@property NSString *awayTeamName;
+@property NSDictionary *odds; 
+
 @end

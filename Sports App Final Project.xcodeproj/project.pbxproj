@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		319C1BAC1CC9274F00EC91C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 319C1BAB1CC9274F00EC91C3 /* main.m */; };
 		319C1BAF1CC9274F00EC91C3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 319C1BAE1CC9274F00EC91C3 /* AppDelegate.m */; };
-		319C1BB21CC9274F00EC91C3 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 319C1BB11CC9274F00EC91C3 /* TodayViewController.m */; };
+		319C1BB21CC9274F00EC91C3 /* NbaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 319C1BB11CC9274F00EC91C3 /* NbaViewController.m */; };
 		319C1BB51CC9274F00EC91C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 319C1BB31CC9274F00EC91C3 /* Main.storyboard */; };
 		319C1BB71CC9274F00EC91C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 319C1BB61CC9274F00EC91C3 /* Assets.xcassets */; };
 		319C1BBA1CC9275000EC91C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 319C1BB81CC9275000EC91C3 /* LaunchScreen.storyboard */; };
 		319C1BC51CC9275000EC91C3 /* Sports_App_Final_ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 319C1BC41CC9275000EC91C3 /* Sports_App_Final_ProjectTests.m */; };
 		319C1BD01CC9275000EC91C3 /* Sports_App_Final_ProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 319C1BCF1CC9275000EC91C3 /* Sports_App_Final_ProjectUITests.m */; };
-		319C1BDF1CC92DB600EC91C3 /* UpcomingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 319C1BDE1CC92DB600EC91C3 /* UpcomingViewController.m */; };
+		319C1BDF1CC92DB600EC91C3 /* MlbViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 319C1BDE1CC92DB600EC91C3 /* MlbViewController.m */; };
 		319C1BE21CC939EE00EC91C3 /* GameStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 319C1BE11CC939EE00EC91C3 /* GameStatsViewController.m */; };
 		319C1BE51CC93A0400EC91C3 /* BettingInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 319C1BE41CC93A0400EC91C3 /* BettingInfoViewController.m */; };
 /* End PBXBuildFile section */
@@ -42,8 +42,8 @@
 		319C1BAB1CC9274F00EC91C3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		319C1BAD1CC9274F00EC91C3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		319C1BAE1CC9274F00EC91C3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		319C1BB01CC9274F00EC91C3 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
-		319C1BB11CC9274F00EC91C3 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		319C1BB01CC9274F00EC91C3 /* NbaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NbaViewController.h; sourceTree = "<group>"; };
+		319C1BB11CC9274F00EC91C3 /* NbaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NbaViewController.m; sourceTree = "<group>"; };
 		319C1BB41CC9274F00EC91C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		319C1BB61CC9274F00EC91C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		319C1BB91CC9275000EC91C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,8 +54,8 @@
 		319C1BCB1CC9275000EC91C3 /* Sports App Final ProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sports App Final ProjectUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		319C1BCF1CC9275000EC91C3 /* Sports_App_Final_ProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sports_App_Final_ProjectUITests.m; sourceTree = "<group>"; };
 		319C1BD11CC9275000EC91C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		319C1BDD1CC92DB600EC91C3 /* UpcomingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingViewController.h; sourceTree = "<group>"; };
-		319C1BDE1CC92DB600EC91C3 /* UpcomingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingViewController.m; sourceTree = "<group>"; };
+		319C1BDD1CC92DB600EC91C3 /* MlbViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MlbViewController.h; sourceTree = "<group>"; };
+		319C1BDE1CC92DB600EC91C3 /* MlbViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MlbViewController.m; sourceTree = "<group>"; };
 		319C1BE01CC939EE00EC91C3 /* GameStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStatsViewController.h; sourceTree = "<group>"; };
 		319C1BE11CC939EE00EC91C3 /* GameStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStatsViewController.m; sourceTree = "<group>"; };
 		319C1BE31CC93A0400EC91C3 /* BettingInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BettingInfoViewController.h; sourceTree = "<group>"; };
@@ -112,10 +112,10 @@
 			children = (
 				319C1BAD1CC9274F00EC91C3 /* AppDelegate.h */,
 				319C1BAE1CC9274F00EC91C3 /* AppDelegate.m */,
-				319C1BB01CC9274F00EC91C3 /* TodayViewController.h */,
-				319C1BB11CC9274F00EC91C3 /* TodayViewController.m */,
-				319C1BDD1CC92DB600EC91C3 /* UpcomingViewController.h */,
-				319C1BDE1CC92DB600EC91C3 /* UpcomingViewController.m */,
+				319C1BB01CC9274F00EC91C3 /* NbaViewController.h */,
+				319C1BB11CC9274F00EC91C3 /* NbaViewController.m */,
+				319C1BDD1CC92DB600EC91C3 /* MlbViewController.h */,
+				319C1BDE1CC92DB600EC91C3 /* MlbViewController.m */,
 				319C1BE01CC939EE00EC91C3 /* GameStatsViewController.h */,
 				319C1BE11CC939EE00EC91C3 /* GameStatsViewController.m */,
 				319C1BE31CC93A0400EC91C3 /* BettingInfoViewController.h */,
@@ -286,9 +286,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				319C1BE21CC939EE00EC91C3 /* GameStatsViewController.m in Sources */,
-				319C1BDF1CC92DB600EC91C3 /* UpcomingViewController.m in Sources */,
+				319C1BDF1CC92DB600EC91C3 /* MlbViewController.m in Sources */,
 				319C1BE51CC93A0400EC91C3 /* BettingInfoViewController.m in Sources */,
-				319C1BB21CC9274F00EC91C3 /* TodayViewController.m in Sources */,
+				319C1BB21CC9274F00EC91C3 /* NbaViewController.m in Sources */,
 				319C1BAF1CC9274F00EC91C3 /* AppDelegate.m in Sources */,
 				319C1BAC1CC9274F00EC91C3 /* main.m in Sources */,
 			);
@@ -514,6 +514,7 @@
 				319C1BD61CC9275000EC91C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		319C1BD71CC9275000EC91C3 /* Build configuration list for PBXNativeTarget "Sports App Final ProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +523,7 @@
 				319C1BD91CC9275000EC91C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		319C1BDA1CC9275000EC91C3 /* Build configuration list for PBXNativeTarget "Sports App Final ProjectUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +532,7 @@
 				319C1BDC1CC9275000EC91C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

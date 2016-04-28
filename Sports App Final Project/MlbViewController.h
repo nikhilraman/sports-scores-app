@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UpcomingViewController : UIViewController
+@interface MlbViewController : UIViewController
 
 @end
