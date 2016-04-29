@@ -7,7 +7,8 @@
 //
 
 #import "MlbViewController.h"  
-#import "BettingInfoViewController.h"
+#import "BettingInfoViewController.h" 
+#import "GameStatsViewController.h"
 
 #define JsonOddsApiKey @"c423e5a1-c2f0-41b9-91fb-417a57117006" 
 
@@ -33,6 +34,12 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.title = @"MLB Schedule";
+    
+    //UIImage *selectedImage = [UIImage imageNamed:@"Baseball Filled-50.png"];
+    //UIImage *unselectedImage = [UIImage imageNamed:@"Baseball-50.png"];
+    
+    //[self.tabBarItem setImage:unselectedImage];
+    //[self.tabBarItem setSelectedImage:selectedImage];
     // Do any additional setup after loading the view.
 }
 
@@ -75,10 +82,12 @@
     NSDictionary *game = self.gamesArray[indexPath.row];
     NSString *homeTeam = [game objectForKey:@"HomeTeam"];
     UILabel *homeTeamLabel = (UILabel *)[cell viewWithTag:2];
+    homeTeamLabel.textColor = [UIColor blueColor];
     homeTeamLabel.text = homeTeam;
     
     NSString *awayTeam = [game objectForKey:@"AwayTeam"];
     UILabel *awayTeamLabel = (UILabel *)[cell viewWithTag:1];
+    awayTeamLabel.textColor = [UIColor orangeColor];
     awayTeamLabel.text = awayTeam;
     
     NSString *dateString = [game objectForKey:@"MatchTime"];
@@ -90,6 +99,7 @@
     [dateFormatter setDateFormat:@"MM/dd '|' hh:mm"];
     NSString *newDateString = [dateFormatter stringFromDate:gameTime];
     UILabel *dateLabel = (UILabel *)[cell viewWithTag:3];
+    dateLabel.textColor = [UIColor grayColor];
     dateLabel.text = newDateString;
     
     //[gameTime ]
@@ -119,6 +129,10 @@
         biVC.odds = self.singleGameOdds;
         biVC.homeTeamName = self.homeTeamSelected;
         biVC.awayTeamName = self.awayTeamSelected;
+        GameStatsViewController *gsVC = [tbc.viewControllers objectAtIndex:1];
+        gsVC.homeTeamName = self.homeTeamSelected;
+        gsVC.awayTeamName = self.awayTeamSelected;
+        gsVC.sport = @"mlb";
     }
     
 }

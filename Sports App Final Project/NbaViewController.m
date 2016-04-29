@@ -7,7 +7,8 @@
 //
 
 #import "NbaViewController.h"
-#import "BettingInfoViewController.h"
+#import "BettingInfoViewController.h" 
+#import "GameStatsViewController.h"
 
 #define baseNBAOddsURL @"https://jsonodds.com/api/odds/nba?oddType=Game" 
 
@@ -82,7 +83,7 @@
     
     NSString *awayTeam = [game objectForKey:@"AwayTeam"];
     UILabel *awayTeamLabel = (UILabel *)[cell viewWithTag:1];
-    awayTeamLabel.textColor = [UIColor redColor];
+    awayTeamLabel.textColor = [UIColor orangeColor];
     //awayTeamLabel.textColor = [UIColor lightTextColor];
     awayTeamLabel.text = awayTeam;
     
@@ -96,6 +97,7 @@
     [dateFormatter setDateFormat:@"MM/dd '|' hh:mm"];
     NSString *newDateString = [dateFormatter stringFromDate:gameTime];
     UILabel *dateLabel = (UILabel *)[cell viewWithTag:3];
+    dateLabel.textColor = [UIColor grayColor];
     dateLabel.text = newDateString;
     
     //[gameTime ]
@@ -126,6 +128,10 @@
         biVC.odds = self.singleGameOdds;
         biVC.homeTeamName = self.homeTeamSelected;
         biVC.awayTeamName = self.awayTeamSelected;
+        GameStatsViewController *gsVC = [tbc.viewControllers objectAtIndex:1];
+        gsVC.homeTeamName = self.homeTeamSelected;
+        gsVC.awayTeamName = self.awayTeamSelected;
+        gsVC.sport = @"nba";
     }
 }
 

@@ -10,4 +10,8 @@
 
 @interface GameStatsViewController : UIViewController
 
+@property NSString *homeTeamName;
+@property NSString *awayTeamName;
+@property NSString *sport;
+
 @end

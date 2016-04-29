@@ -18,6 +18,14 @@
 		319C1BDF1CC92DB600EC91C3 /* MlbViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 319C1BDE1CC92DB600EC91C3 /* MlbViewController.m */; };
 		319C1BE21CC939EE00EC91C3 /* GameStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 319C1BE11CC939EE00EC91C3 /* GameStatsViewController.m */; };
 		319C1BE51CC93A0400EC91C3 /* BettingInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 319C1BE41CC93A0400EC91C3 /* BettingInfoViewController.m */; };
+		31ED5A351CD3347D00EAD9AB /* Baseball-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 31ED5A341CD3347D00EAD9AB /* Baseball-25.png */; };
+		31ED5A371CD334F300EAD9AB /* Baseball-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 31ED5A361CD334F300EAD9AB /* Baseball-30.png */; };
+		31ED5A3E1CD3358700EAD9AB /* Chip Filled-28.png in Resources */ = {isa = PBXBuildFile; fileRef = 31ED5A381CD3358700EAD9AB /* Chip Filled-28.png */; };
+		31ED5A3F1CD3358700EAD9AB /* Chip-28.png in Resources */ = {isa = PBXBuildFile; fileRef = 31ED5A391CD3358700EAD9AB /* Chip-28.png */; };
+		31ED5A401CD3358700EAD9AB /* Basketball Filled-28.png in Resources */ = {isa = PBXBuildFile; fileRef = 31ED5A3A1CD3358700EAD9AB /* Basketball Filled-28.png */; };
+		31ED5A411CD3358700EAD9AB /* Basketball-28.png in Resources */ = {isa = PBXBuildFile; fileRef = 31ED5A3B1CD3358700EAD9AB /* Basketball-28.png */; };
+		31ED5A421CD3358700EAD9AB /* Baseball Filled-28.png in Resources */ = {isa = PBXBuildFile; fileRef = 31ED5A3C1CD3358700EAD9AB /* Baseball Filled-28.png */; };
+		31ED5A431CD3358700EAD9AB /* Baseball-28.png in Resources */ = {isa = PBXBuildFile; fileRef = 31ED5A3D1CD3358700EAD9AB /* Baseball-28.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +68,14 @@
 		319C1BE11CC939EE00EC91C3 /* GameStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStatsViewController.m; sourceTree = "<group>"; };
 		319C1BE31CC93A0400EC91C3 /* BettingInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BettingInfoViewController.h; sourceTree = "<group>"; };
 		319C1BE41CC93A0400EC91C3 /* BettingInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BettingInfoViewController.m; sourceTree = "<group>"; };
+		31ED5A341CD3347D00EAD9AB /* Baseball-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Baseball-25.png"; path = "../../../../../../Downloads/Baseball-25.png"; sourceTree = "<group>"; };
+		31ED5A361CD334F300EAD9AB /* Baseball-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Baseball-30.png"; path = "../../../../../../Downloads/Baseball-30.png"; sourceTree = "<group>"; };
+		31ED5A381CD3358700EAD9AB /* Chip Filled-28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Chip Filled-28.png"; path = "../../../../../../Downloads/Chip Filled-28.png"; sourceTree = "<group>"; };
+		31ED5A391CD3358700EAD9AB /* Chip-28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Chip-28.png"; path = "../../../../../../Downloads/Chip-28.png"; sourceTree = "<group>"; };
+		31ED5A3A1CD3358700EAD9AB /* Basketball Filled-28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Basketball Filled-28.png"; path = "../../../../../../Downloads/Basketball Filled-28.png"; sourceTree = "<group>"; };
+		31ED5A3B1CD3358700EAD9AB /* Basketball-28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Basketball-28.png"; path = "../../../../../../Downloads/Basketball-28.png"; sourceTree = "<group>"; };
+		31ED5A3C1CD3358700EAD9AB /* Baseball Filled-28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Baseball Filled-28.png"; path = "../../../../../../Downloads/Baseball Filled-28.png"; sourceTree = "<group>"; };
+		31ED5A3D1CD3358700EAD9AB /* Baseball-28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Baseball-28.png"; path = "../../../../../../Downloads/Baseball-28.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +137,14 @@
 				319C1BE31CC93A0400EC91C3 /* BettingInfoViewController.h */,
 				319C1BE41CC93A0400EC91C3 /* BettingInfoViewController.m */,
 				319C1BB31CC9274F00EC91C3 /* Main.storyboard */,
+				31ED5A361CD334F300EAD9AB /* Baseball-30.png */,
+				31ED5A341CD3347D00EAD9AB /* Baseball-25.png */,
+				31ED5A381CD3358700EAD9AB /* Chip Filled-28.png */,
+				31ED5A391CD3358700EAD9AB /* Chip-28.png */,
+				31ED5A3A1CD3358700EAD9AB /* Basketball Filled-28.png */,
+				31ED5A3B1CD3358700EAD9AB /* Basketball-28.png */,
+				31ED5A3C1CD3358700EAD9AB /* Baseball Filled-28.png */,
+				31ED5A3D1CD3358700EAD9AB /* Baseball-28.png */,
 				319C1BB61CC9274F00EC91C3 /* Assets.xcassets */,
 				319C1BB81CC9275000EC91C3 /* LaunchScreen.storyboard */,
 				319C1BBB1CC9275000EC91C3 /* Info.plist */,
@@ -258,9 +282,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31ED5A421CD3358700EAD9AB /* Baseball Filled-28.png in Resources */,
+				31ED5A431CD3358700EAD9AB /* Baseball-28.png in Resources */,
+				31ED5A411CD3358700EAD9AB /* Basketball-28.png in Resources */,
+				31ED5A3E1CD3358700EAD9AB /* Chip Filled-28.png in Resources */,
+				31ED5A351CD3347D00EAD9AB /* Baseball-25.png in Resources */,
+				31ED5A371CD334F300EAD9AB /* Baseball-30.png in Resources */,
+				31ED5A3F1CD3358700EAD9AB /* Chip-28.png in Resources */,
 				319C1BBA1CC9275000EC91C3 /* LaunchScreen.storyboard in Resources */,
 				319C1BB71CC9274F00EC91C3 /* Assets.xcassets in Resources */,
 				319C1BB51CC9274F00EC91C3 /* Main.storyboard in Resources */,
+				31ED5A401CD3358700EAD9AB /* Basketball Filled-28.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
