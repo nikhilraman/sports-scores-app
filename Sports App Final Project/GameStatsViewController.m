@@ -89,7 +89,6 @@
 }
 
 - (void) loadGameLogForHomeTeam {
-    // TO DO: Get stats from NBA API
     NSLog(@"Entering game log 1 loading");
     
     NSString *fullURL;
@@ -114,13 +113,16 @@
     [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
     [request setValue:authorization forHTTPHeaderField:@"Authorization"];
     [request setValue:accept forHTTPHeaderField:@"Accept"];
-    //[request setValue:@"Game" forKey:@"oddType"];
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithRequest:request
                 completionHandler:^(NSData * data, NSURLResponse *response, NSError *error) {
                     NSMutableDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
                     NSArray *games = [json objectForKey:@"games"];
-                    self.homeGameLogArray = [games mutableCopy];
+                    
+                    NSSortDescriptor *brandDescriptor = [[NSSortDescriptor alloc] initWithKey:@"started_at" ascending:NO];
+                    NSArray *sortDescriptors = [NSArray arrayWithObject:brandDescriptor];
+                    NSArray *sortedArray = [games sortedArrayUsingDescriptors:sortDescriptors];
+                    self.homeGameLogArray = [sortedArray mutableCopy];
                     NSLog(@"Obtained homeGameLog data");
                     dispatch_queue_t mainQueue = dispatch_get_main_queue();
                     dispatch_async(mainQueue, ^{
@@ -130,7 +132,6 @@
 }
 
 - (void) loadGameLogForAwayTeam {
-    // TO DO: Get stats from NBA API
     NSLog(@"Entering game log 2 loading");
     NSString *fullURL;
     
@@ -150,13 +151,16 @@
     [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
     [request setValue:authorization forHTTPHeaderField:@"Authorization"];
     [request setValue:accept forHTTPHeaderField:@"Accept"];
-    //[request setValue:@"Game" forKey:@"oddType"];
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithRequest:request
                 completionHandler:^(NSData * data, NSURLResponse *response, NSError *error) {
                     NSMutableDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
                     NSArray *games = [json objectForKey:@"games"];
-                    self.awayGameLogArray = [games mutableCopy];
+                    
+                    NSSortDescriptor *brandDescriptor = [[NSSortDescriptor alloc] initWithKey:@"started_at" ascending:NO];
+                    NSArray *sortDescriptors = [NSArray arrayWithObject:brandDescriptor];
+                    NSArray *sortedArray = [games sortedArrayUsingDescriptors:sortDescriptors];
+                    self.awayGameLogArray = [sortedArray mutableCopy];
                     NSLog(@"Obtained awayGameLog data");
                     dispatch_queue_t mainQueue = dispatch_get_main_queue();
                     dispatch_async(mainQueue, ^{
@@ -171,7 +175,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2 ;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -234,15 +238,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

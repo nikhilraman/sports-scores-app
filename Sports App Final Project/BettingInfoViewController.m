@@ -8,18 +8,12 @@
 
 #import "BettingInfoViewController.h"
 
-@interface BettingInfoViewController ()
+@interface BettingInfoViewController () <UITableViewDataSource, UITableViewDelegate>
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) IBOutlet UILabel *moneyLineHome;
-@property (strong, nonatomic) IBOutlet UILabel *moneyLineAway;
-@property (strong, nonatomic) IBOutlet UILabel *homeSpread;
-@property (strong, nonatomic) IBOutlet UILabel *awaySpread;
-
-@property (strong, nonatomic) IBOutlet UILabel *under;
-@property (strong, nonatomic) IBOutlet UILabel *over;
-
-@property (strong, nonatomic) IBOutlet UILabel *homeTeam;
-@property (strong, nonatomic) IBOutlet UILabel *awayTeam;
+@property NSMutableArray *moneylines;
+@property NSMutableArray *spreads;
+@property NSMutableArray *overUnder;
 
 @end
 
@@ -27,7 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self displayOddsInfo];
+    [self loadOddsInfo];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     // Do any additional setup after loading the view.
 }
 
@@ -35,39 +31,102 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void) displayOddsInfo {
+- (void) loadOddsInfo {
     NSNumber *MLHome = [self.odds objectForKey:@"MoneyLineHome"];
+    NSString *MLHomeString = [MLHome stringValue];
+    if (MLHome.doubleValue > 0) {
+        MLHomeString = [@"+" stringByAppendingString:MLHomeString];
+    }
     NSNumber *MLAway = [self.odds objectForKey:@"MoneyLineAway"];
+    NSString *MLAwayString = [MLAway stringValue];
+    if (MLAway.doubleValue > 0) {
+        MLAwayString = [@"+" stringByAppendingString:MLAwayString];
+    }
     NSNumber *pointSpreadHome = [self.odds objectForKey:@"PointSpreadHome"];
+    NSString *spreadHomeString = [pointSpreadHome stringValue];
+    if (pointSpreadHome.doubleValue > 0) {
+        spreadHomeString = [@"+" stringByAppendingString:spreadHomeString];
+    }
     NSNumber *pointSpreadAway = [self.odds objectForKey:@"PointSpreadAway"];
+    NSString *spreadAwayString = [pointSpreadAway stringValue];
+    if (pointSpreadAway.doubleValue > 0) {
+        spreadAwayString = [@"+" stringByAppendingString:spreadAwayString];
+    }
     NSNumber *pointSpreadHomeLine = [self.odds objectForKey:@"PointSpreadHomeLine"];
     NSNumber *pointSpreadAwayLine = [self.odds objectForKey:@"PointSpreadAwayLine"];
     NSNumber *totalNumber = [self.odds objectForKey:@"TotalNumber"];
     NSNumber *overLine = [self.odds objectForKey:@"OverLine"];
     NSNumber *underLine = [self.odds objectForKey:@"UnderLine"];
     
+    NSString *moneyLineAway = [[MLAwayString stringByAppendingString:@" -- "]
+        stringByAppendingString:self.awayTeamName];
+    NSString *moneyLineHome = [[MLHomeString stringByAppendingString:@" -- "]
+        stringByAppendingString:self.homeTeamName];
+    NSString *awaySpread = [[[[spreadAwayString stringByAppendingString:@" ("]
+        stringByAppendingString:pointSpreadAwayLine.stringValue]
+        stringByAppendingString:@") -- "]
+        stringByAppendingString:self.awayTeamName];
+    NSString *homeSpread = [[[[spreadHomeString
+        stringByAppendingString:@" ("]
+        stringByAppendingString:pointSpreadHomeLine.stringValue]
+        stringByAppendingString:@") -- "]
+        stringByAppendingString:self.homeTeamName];
+    NSString *over = [[[[totalNumber.stringValue stringByAppendingString:@" ("]
+        stringByAppendingString:overLine.stringValue]stringByAppendingString:@") -- "] stringByAppendingString:@"Over"];
+    NSString *under = [[[[totalNumber.stringValue stringByAppendingString:@" ("]
+        stringByAppendingString:underLine.stringValue]stringByAppendingString:@") -- "] stringByAppendingString:@"Under"];
     
-    self.moneyLineHome.text = [MLHome stringValue];
-    self.moneyLineAway.text = [MLAway stringValue];
+    self.moneylines = [@[moneyLineAway, moneyLineHome] mutableCopy];
+    self.spreads = [@[awaySpread, homeSpread] mutableCopy];
+    self.overUnder = [@[over, under] mutableCopy];
+}
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if(section == 0) {
+        return @"Moneyline";
+    }
+    else if (section == 1) {
+        return @"Spread";
+    }
+    else {
+        return @"Over/Under";
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *HS = [pointSpreadHome stringValue];
-    NSString *HSL = [pointSpreadHomeLine stringValue];
-    self.homeSpread.text = [[[HS stringByAppendingString:@" ("]stringByAppendingString:HSL] stringByAppendingString:@")"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"oddsCell" forIndexPath:indexPath];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"oddsCell"];
+    }
     
-    NSString *AS = [pointSpreadAway stringValue];
-    NSString *ASL = [pointSpreadAwayLine stringValue];
-    self.awaySpread.text = [[[AS stringByAppendingString:@" ("]stringByAppendingString:ASL] stringByAppendingString:@")"];
+    NSString *info;
+    UILabel *infoLabel = (UILabel *)[cell viewWithTag:1];
+    if (indexPath.section == 0) {
+        infoLabel.textColor = [UIColor purpleColor];
+        info = self.moneylines[indexPath.row];
+    }
+    else if (indexPath.section == 1) {
+        infoLabel.textColor = [UIColor darkGrayColor];
+        info = self.spreads[indexPath.row];
+    }
+    else {
+        infoLabel.textColor = [UIColor orangeColor];
+        info = self.overUnder[indexPath.row];
+    }
+    infoLabel.text = info;
     
-    NSString *U = [totalNumber stringValue];
-    NSString *UL = [underLine stringValue];
-    self.under.text = [[[U stringByAppendingString:@" ("]stringByAppendingString:UL] stringByAppendingString:@")"];
+    return cell;
     
-    NSString *O = [totalNumber stringValue];
-    NSString *OL = [overLine stringValue];
-    self.over.text = [[[O stringByAppendingString:@" ("]stringByAppendingString:OL] stringByAppendingString:@")"];
-    
-    self.homeTeam.text = self.homeTeamName;
-    self.awayTeam.text = self.awayTeamName;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,14 +134,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

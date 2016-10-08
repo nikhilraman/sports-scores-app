@@ -22,6 +22,7 @@
 @property NSString *homeTeamSelected;
 @property NSString *awayTeamSelected;
 
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingGamesActivityIndicator;
 
 @end
 
@@ -29,32 +30,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.loadingGamesActivityIndicator startAnimating];
     self.gamesArray = [[NSMutableArray alloc] init];
-    [self loadGamesFromMlbApi];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    refreshControl.backgroundColor = [UIColor cyanColor];
+    refreshControl.tintColor = [UIColor blackColor];
+    [self.tableView addSubview:refreshControl];
+    
+    
+    [self loadGamesFromMlbApi];
     self.title = @"MLB Schedule";
-    
-    //UIImage *selectedImage = [UIImage imageNamed:@"Baseball Filled-50.png"];
-    //UIImage *unselectedImage = [UIImage imageNamed:@"Baseball-50.png"];
-    
-    //[self.tabBarItem setImage:unselectedImage];
-    //[self.tabBarItem setSelectedImage:selectedImage];
-    // Do any additional setup after loading the view.
+}
+
+- (void)refresh:(UIRefreshControl *)refreshControl {
+    [self loadGamesFromMlbApi];
+    [refreshControl endRefreshing];
 }
 
 - (void) loadGamesFromMlbApi {
-    // TO DO: Implement the gathering of data from the NBA API. Use the nba api url and create a request to gather a listing of a set number of upcoming games
     NSLog(@"Entering MLB game loading");
     NSURL *url = [NSURL URLWithString:baseMLBOddsURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:JsonOddsApiKey forHTTPHeaderField:@"JsonOdds-API-Key"];
-    //[request setValue:@"Game" forKey:@"oddType"];
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithRequest:request
                 completionHandler:^(NSData * data, NSURLResponse *response, NSError *error) {
                     NSMutableArray *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-                    //NSArray *games = [[json objectForKey:@"photos"] objectForKey:@"photo"];
                     self.gamesArray = [json mutableCopy];
                     NSLog(@"Obtained MLB data");
                     dispatch_queue_t mainQueue = dispatch_get_main_queue();
@@ -67,12 +72,13 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // TO DO: Implement number of rows in section
     return self.gamesArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // TO DO: Implement the desired view for each cell to be displayed
+    if (indexPath.row == 0) {
+        [self.loadingGamesActivityIndicator stopAnimating];
+    }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mlbGameCell" forIndexPath:indexPath];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mlbGameCell"];
@@ -102,17 +108,11 @@
     dateLabel.textColor = [UIColor grayColor];
     dateLabel.text = newDateString;
     
-    //[gameTime ]
-    
-    
-    //UILabel *testLabel = (UILabel *)[cell viewWithTag:1];
-    //testLabel.text = @"test!";
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // TO DO: Handle what happens if user taps on a cell
     NSDictionary *game = self.gamesArray[indexPath.row];
     NSArray *gameOdds = [game objectForKey:@"Odds"];
     self.singleGameOdds = gameOdds[0];
@@ -142,15 +142,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
